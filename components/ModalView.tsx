@@ -11,7 +11,7 @@ const ModalView = ({handleSubmit, modalRef}: ModalViewProps) => {
   const [inputValue, setInputValue] = useState('')
     return (
       <Modalize ref={modalRef} adjustToContentHeight>
-      <KeyboardAvoidingView 
+      <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={styles.modalContent}
       >
@@ -21,8 +21,9 @@ const ModalView = ({handleSubmit, modalRef}: ModalViewProps) => {
           value={inputValue}
           onChangeText={setInputValue}
         />
-        <Button 
+      <Button 
         title="Submit" 
+        disabled={inputValue.trim() === ''}
         onPress={() => {
           handleSubmit(inputValue)
           setInputValue('')
