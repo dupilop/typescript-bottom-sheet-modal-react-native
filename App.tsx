@@ -1,20 +1,44 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState, useRef } from 'react';
+import { View, Button, StyleSheet } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { Modalize } from 'react-native-modalize';
+import ModalView from './components/ModalView';
+import ListingView from './components/ListingView';
 
 export default function App() {
+  const [listViewable, setListViewable] = useState<string[]>([]);
+  const modalRef = useRef<Modalize>(null);
+
+  const openModal = () => {
+    modalRef.current?.open();
+  };
+
+  const closeModal = () => {
+    modalRef.current?.close();
+  };
+
+  const handleSubmit = (input: string) => {
+    setListViewable([...listViewable, input]);
+    closeModal();
+  };
+
+  
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <View style={styles.container}>
+        <Button title="Open Modal" onPress={openModal} />
+        <ListingView lists={listViewable} />
+        <ModalView handleSubmit={handleSubmit} modalRef={modalRef}/>
+      </View>
+    </GestureHandlerRootView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
   },
 });
