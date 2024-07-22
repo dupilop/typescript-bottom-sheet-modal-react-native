@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 import { Button, TextInput, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
 import { Modalize } from 'react-native-modalize';
 
-const ModalView = ({handleSubmit, modalRef}: any) => {
+type ModalViewProps = {
+  handleSubmit: (input: string) => void,
+  modalRef: React.RefObject<Modalize>,
+}
+
+const ModalView = ({handleSubmit, modalRef}: ModalViewProps) => {
   const [inputValue, setInputValue] = useState('')
     return (
       <Modalize ref={modalRef} adjustToContentHeight>
