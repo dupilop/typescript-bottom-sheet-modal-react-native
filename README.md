@@ -7,8 +7,8 @@ This is a [React Native ](https://reactnative.dev/) project bootstrapped with [`
 First, Clone the repository:
 
 ```bash
-git clone <repository-url>
-cd <repository-name>
+git clone https://github.com/dupilop/typescript-bottom-sheet-modal-react-native
+cd typescript-bottom-sheet-modal-react-native
 ```
 
 
